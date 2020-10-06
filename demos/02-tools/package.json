@@ -1,0 +1,32 @@
+{
+  "name": "02-tools",
+  "version": "0.01",
+  "description": "Base tooling",
+  "main": "src/App.js",
+  "author": "gilles-bertrand",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@imaginary-cloud/eslint-config-react": "^1.0.1",
+    "eslint": "^7.10.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.21.3",
+    "eslint-plugin-react-hooks": "^4.1.2",
+    "parcel-bundler": "^1.12.4",
+    "prettier": "^2.1.2"
+  },
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "format": "prettier --write \"src/**/*.{js,jsx}\""
+  },
+  "eslintConfig": {
+    "extends": "@imaginary-cloud/react"
+  },
+  "prettier": "@imaginary-cloud/prettier-config"
+}
