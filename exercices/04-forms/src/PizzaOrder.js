@@ -24,11 +24,24 @@ const PizzaOrder = () => {
   }
   const handleChange = (event) => {
     const { name, value } = event.target
-    console.log(name, value)
-    setOrder((prevOrder) => ({
-      ...prevOrder,
-      [name]: value,
-    }))
+    if (name === 'isFreeGluten') {
+      let valueBoolean = false
+      if (value === 'false') {
+        valueBoolean = false
+      } else {
+        valueBoolean = true
+      }
+      valueBoolean = !value
+      setOrder((prevOrder) => ({
+        ...prevOrder,
+        isFreeGluten: valueBoolean,
+      }))
+    } else {
+      setOrder((prevOrder) => ({
+        ...prevOrder,
+        [name]: value,
+      }))
+    }
   }
   return (
     <form className="ml-2" onSubmit={submitOrder}>
@@ -133,7 +146,7 @@ const PizzaOrder = () => {
           </button>
           <button
             className="p-1 m-1 border rounded text-indigo-800 bg-orange-300 hover:bg-indigo-800 hover:text-orange-300"
-            type="reset"
+            type="button"
             onClick={resetForm}
           >
             reset
