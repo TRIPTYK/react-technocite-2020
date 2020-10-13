@@ -5,37 +5,51 @@ const cartReducer = (state, action) => {
   switch (action.type) {
     case ADDTOCART:
       if (action.payload.item.qt) {
-        action.payload.item.qt += 1
-        return [
-          ...state.filter((item) => item.id !== action.payload.item.id),
-          action.payload.item,
-        ]
+        return state.map((item) => {
+          if (item.id !== action.payload.item.id) {
+            return item
+          }
+          return {
+            ...item,
+            qt: item.qt + 1,
+          }
+        })
       }
       return [...state, { ...action.payload.item, qt: 1 }]
-
-    case ADDTOCARTFROMITEMS:
-      if (!action.payload.item.qt) {
-        return [
-          ...state.filter((item) => item.id !== action.payload.item.id),
-          { ...action.payload.item, qt: 1 },
-        ]
+    case ADDTOCARTFROMITEMS: {
+      const itemInState = state.find(
+        (item) => item.id === action.payload.item.id,
+      )
+      if (itemInState) {
+        return state.map((item) => {
+          if (item.id !== action.payload.item.id) {
+            return item
+          }
+          return {
+            ...item,
+            qt: item.qt + 1,
+          }
+        })
       }
-      action.payload.item.qt += 1
       return [
         ...state.filter((item) => item.id !== action.payload.item.id),
-        { ...action.payload.item },
+        { ...action.payload.item, qt: 1 },
       ]
-
-    case REMOVEFROMCART:
+    }
+    case REMOVEFROMCART: {
       if (action.payload.item.qt > 1) {
-        action.payload.item.qt -= 1
-        return [
-          ...state.filter((item) => item.id !== action.payload.item.id),
-          action.payload.item,
-        ]
+        return state.map((item) => {
+          if (item.id !== action.payload.item.id) {
+            return item
+          }
+          return {
+            ...item,
+            qt: item.qt - 1,
+          }
+        })
       }
-      return [...state.filter((item) => item.id === action.payload.item.id)]
-
+      return [...state.filter((item) => item.id !== action.payload.item.id)]
+    }
     default:
       return state
   }

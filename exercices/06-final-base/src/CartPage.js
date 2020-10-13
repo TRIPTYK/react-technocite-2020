@@ -5,6 +5,11 @@ import { ADDTOCART, REMOVEFROMCART } from './CartReducer'
 import Item from './Item'
 const CartPage = () => (
   <div>
+    <StoreContext.Consumer>
+      {({ totalAmount }) => (
+        <span className="p-2 text-2xl">Total amount due {totalAmount} €</span>
+      )}
+    </StoreContext.Consumer>
     <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       <StoreContext.Consumer>
         {({ cart, dispatchToCart }) =>

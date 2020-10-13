@@ -17,7 +17,15 @@ const App = () => {
     return () => {}
   }, [])
   const [items, setItems] = useState([])
+  const [totalAmount, setTotalAmount] = useState(0)
   const [cart, dispatchToCart] = useReducer(cartReducer, [])
+  useEffect(() => {
+    if (cart.length) {
+      setTotalAmount(
+        cart.reduce((prev, next) => prev + parseFloat(next.price) * next.qt, 0),
+      )
+    }
+  }, [cart])
   return (
     <div className="py-10">
       <header>
@@ -32,7 +40,9 @@ const App = () => {
           <div className="px-4 py-8 sm:px-0">
             <div className="border-4 border-dashed border-gray-200 rounded-lg">
               <Nav />
-              <StoreContext.Provider value={{ items, cart, dispatchToCart }}>
+              <StoreContext.Provider
+                value={{ items, cart, dispatchToCart, totalAmount }}
+              >
                 <Router>
                   <ItemsPage path="/" />
                   <CartPage path="/cart" />
