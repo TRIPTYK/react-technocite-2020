@@ -31,7 +31,7 @@ const PizzaOrder = () => {
       } else {
         valueBoolean = true
       }
-      valueBoolean = !value
+      valueBoolean = !valueBoolean
       setOrder((prevOrder) => ({
         ...prevOrder,
         isFreeGluten: valueBoolean,
