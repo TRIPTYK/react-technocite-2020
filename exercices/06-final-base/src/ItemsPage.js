@@ -1,7 +1,7 @@
 import React from 'react'
 // eslint-disable-next-line import/no-cycle
 import { StoreContext } from './App'
-import { ADDTOCART, ADDTOCARTFROMITEMS } from './CartReducer'
+import { ADDTOCARTFROMITEMS } from './CartReducer'
 import Item from './Item'
 
 const ItemsPage = () => (

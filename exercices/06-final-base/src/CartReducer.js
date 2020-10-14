@@ -37,7 +37,7 @@ const cartReducer = (state, action) => {
       ]
     }
     case REMOVEFROMCART: {
-      if (action.payload.item.qt > 1) {
+      if (action.payload.item.qt >= 1) {
         return state.map((item) => {
           if (item.id !== action.payload.item.id) {
             return item
